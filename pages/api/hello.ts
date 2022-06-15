@@ -1,19 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
-  name: string;
-};
+// type Data = {
+//   name: string;
+// };
 
 export const APP_ID = "598360455040144";
 const APP_SECRET = "9c3fe45849a58a3c90d77d2249b0c2fd";
 
 const FACEBOOK_GRAPH_URL = "https://graph.facebook.com/v3.2";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default async function handler(req: any, res: NextApiResponse) {
   const appAccessToken = await getAppAccessToken();
 
   const scopes = await debugToken(appAccessToken, req.query.token);
@@ -23,7 +20,6 @@ export default async function handler(
   res.json({ scopes });
 }
 
-// the backend
 const getAppAccessToken = async () => {
   const response = await fetch(
     `https://graph.facebook.com/oauth/access_token?client_id=${APP_ID}&client_secret=${APP_SECRET}&grant_type=client_credentials`

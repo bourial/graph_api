@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 const Home: NextPage = () => {
   const login = () => {
@@ -9,7 +8,7 @@ const Home: NextPage = () => {
         if (response.status === "connected") {
           console.log(response.authResponse.accessToken);
           fetch(
-            `http://localhost:3000/api/hello?token=${response.authResponse.accessToken}`
+            `https://graph.bourial.com/api/hello?token=${response.authResponse.accessToken}`
           ).then(res => console.log(res));
         }
       },
