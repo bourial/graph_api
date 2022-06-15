@@ -8,7 +8,7 @@ const Home: NextPage = () => {
         if (response.status === "connected") {
           console.log(response.authResponse.accessToken);
           fetch(
-            `https://graph.bourial.com/api/hello?token=${response.authResponse.accessToken}`
+            `https://graph-api.vercel.app/api/hello?token=${response.authResponse.accessToken}`
           ).then(res => console.log(res));
         }
       },
