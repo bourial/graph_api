@@ -15,9 +15,11 @@ export default async function handler(req: any, res: NextApiResponse) {
 
   const scopes = await debugToken(appAccessToken, req.query.token);
 
+  const pages = await getPagesBasedOnToken(req.query.token);
+
   console.log(scopes);
 
-  res.json({ scopes });
+  res.json({ scopes, accessToken: pages?.[0].access_token });
 }
 
 const getAppAccessToken = async () => {
@@ -40,4 +42,18 @@ const debugToken = async (appAccessToken: string, token: string) => {
   const data: { data: { scopes: string[] } } = await response.json();
 
   return data.data.scopes;
+};
+
+const getPagesBasedOnToken = async (userToken: string) => {
+  const response = await fetch(
+    `${FACEBOOK_GRAPH_URL}/me/accounts?&access_token=${userToken}`
+  );
+
+  const data: any = await response.json();
+
+  if (response.ok) {
+    return data.data;
+  }
+
+  throw new Error("Could not retrieve pages");
 };

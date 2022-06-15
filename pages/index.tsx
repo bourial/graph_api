@@ -9,10 +9,10 @@ const Home: NextPage = () => {
           console.log(response.authResponse.accessToken);
           fetch(
             `https://graph-api.vercel.app/api/hello?token=${response.authResponse.accessToken}`
-          ).then(res => console.log(res));
+          ).then(response => response.json().then(data => console.log(data)));
         }
       },
-      { scope: "public_profile" }
+      { scope: "public_profile, pages_read_engagement" }
     );
   };
 
