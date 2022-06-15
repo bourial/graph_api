@@ -1,8 +1,32 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import Script from "next/script";
+import { useEffect } from "react";
+import { APP_ID } from "./api/hello";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  useEffect(() => {
+    window.fbAsyncInit = function () {
+      window.FB.init({
+        appId: APP_ID,
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: "v14.0",
+      });
+    };
+  }, []);
+
+  return (
+    <>
+      <Component {...pageProps} />
+      <Script
+        async
+        defer
+        crossOrigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js"
+      />
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;
