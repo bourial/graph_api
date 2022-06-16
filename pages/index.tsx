@@ -12,7 +12,13 @@ const Home: NextPage = () => {
           ).then(response => response.json().then(data => console.log(data)));
         }
       },
-      { scope: "public_profile, pages_read_engagement" }
+      { scope: "public_profile, pages_read_engagement, pages_manage_posts" }
+    );
+  };
+
+  const createPost = () => {
+    fetch(`https://graph-api.vercel.app/api/post`).then(response =>
+      response.json().then(data => console.log(data))
     );
   };
 
@@ -30,6 +36,7 @@ const Home: NextPage = () => {
         >
           Login
         </button>
+        <button onClick={createPost}>Create New Post</button>
       </main>
     </div>
   );
