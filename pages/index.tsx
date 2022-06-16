@@ -7,9 +7,7 @@ const Home: NextPage = () => {
       response => {
         if (response.status === "connected") {
           console.log(response.authResponse.accessToken);
-          fetch(
-            `https://graph-api.vercel.app/api/hello?token=${response.authResponse.accessToken}`
-          )
+          fetch(`https://graph-api.vercel.app/api/hello`)
             .then(response => response.json())
             .then(data => console.log(data));
         }
