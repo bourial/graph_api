@@ -12,6 +12,8 @@ import { getPage, setPage } from "../../api_helpers/storage";
 // };
 
 export default async function handler(req: any, res: NextApiResponse) {
+  console.log("get into handler");
+
   const appAccessToken = await getAppAccessToken();
 
   const scopes = await debugToken(appAccessToken, req.query.token);
