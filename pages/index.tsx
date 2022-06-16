@@ -29,14 +29,19 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+      <main className="flex w-full flex-1 flex-col items-center justify-center space-y-4 px-20 text-center">
         <button
           onClick={login}
           className="bg-green-500 text-white font-semibold px-12 py-3 rounded-xl"
         >
           Login
         </button>
-        <button onClick={createPost}>Create New Post</button>
+        <button
+          className="bg-blue-500 text-white font-semibold px-12 py-3 rounded-xl"
+          onClick={createPost}
+        >
+          Create New Post
+        </button>
       </main>
     </div>
   );
