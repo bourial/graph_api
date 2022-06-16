@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { useEffect } from "react";
-import { APP_ID } from "./api/hello";
+import { APP_ID } from "../api_helpers/fb";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
