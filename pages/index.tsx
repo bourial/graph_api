@@ -53,7 +53,7 @@ const Home: NextPage = () => {
             Login
           </button>
         ) : (
-          <div className="font-semibold">
+          <div className="text-sm">
             your logged in as {dataFromLogin.accessToken.name}{" "}
             <span className="font-bold">Edit Page</span>
           </div>

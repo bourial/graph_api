@@ -5,7 +5,6 @@ import {
   getAppAccessToken,
   getPagesBasedOnToken,
 } from "../../api_helpers/fb";
-// import { getPage, setPage } from "../../api_helpers/storage";
 
 // type Data = {
 //   name: string;
@@ -23,10 +22,6 @@ export default async function handler(req: any, res: NextApiResponse) {
   if (!page) {
     return res.status(500);
   }
-
-  // setPage(page.id, page.access_token);
-
-  // console.log("checking page...", getPage());
 
   res.json({ scopes, accessToken: page });
 }
