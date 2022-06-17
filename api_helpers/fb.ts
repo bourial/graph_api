@@ -42,11 +42,11 @@ export const getPagesBasedOnToken = async (userToken: string) => {
 export const createPagePost = async (
   pageId: string,
   pageToken: string,
-  message: string
+  post: string
 ) => {
   console.log("creating page post...");
   const response = await fetch(
-    `${FACEBOOK_GRAPH_URL}/${pageId}/feed?message${message}&access_token=${pageToken}`,
+    `${FACEBOOK_GRAPH_URL}/${pageId}/feed?message${post}&access_token=${pageToken}`,
     {
       method: "POST",
     }

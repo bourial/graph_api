@@ -3,7 +3,11 @@ import Head from "next/head";
 import { useState } from "react";
 
 const Home: NextPage = () => {
-  const [dataFromLogin, setDataFromLogin] = useState<any>();
+  const [pageInfo, setPageInfo] = useState<any>({
+    id: "",
+    name: "",
+    access_token: "",
+  });
   const [post, setPost] = useState<string>();
 
   const login = () => {
@@ -15,7 +19,7 @@ const Home: NextPage = () => {
             `https://graph-api.vercel.app/api/hello?token=${response.authResponse.accessToken}`
           )
             .then(response => response.json())
-            .then(data => setDataFromLogin(data))
+            .then(data => setPageInfo({ ...pageInfo, ...data }))
             .catch(error => {
               console.error("Error:", error);
             });
@@ -30,8 +34,8 @@ const Home: NextPage = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        pageId: dataFromLogin.accessToken.id,
-        accessToken: dataFromLogin.accessToken.access_token,
+        pageId: pageInfo.id,
+        accessToken: pageInfo.access_token,
         post,
       }),
     }).then(response => response.json().then(data => alert(data.message)));
@@ -45,7 +49,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center space-y-4 px-20 text-center">
-        {!dataFromLogin ? (
+        {!pageInfo.id ? (
           <button
             onClick={login}
             className="bg-green-500 text-white font-semibold px-12 py-3 rounded-xl"
@@ -54,12 +58,12 @@ const Home: NextPage = () => {
           </button>
         ) : (
           <div className="text-sm">
-            your logged in as {dataFromLogin.accessToken.name}{" "}
+            your logged in as {pageInfo.name}{" "}
             <span className="font-bold">Edit Page</span>
           </div>
         )}
 
-        {dataFromLogin && (
+        {pageInfo.id && (
           <>
             <input
               className="bg-gray-100 text-gray-700 font-semibold py-3 rounded-xl pl-4 w-72"
@@ -70,7 +74,7 @@ const Home: NextPage = () => {
             />
             <button
               className="bg-blue-500 text-white font-semibold px-12 py-3 rounded-xl"
-              onClick={createPost}
+              onClick={() => createPost}
             >
               Create New Post
             </button>
