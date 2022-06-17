@@ -20,13 +20,13 @@ export default async function handler(req: any, res: NextApiResponse) {
 
   const page = pages?.[0];
 
-  if (!page) {
-    return res.status(500);
-  }
+  // if (!page) {
+  //   return res.status(500);
+  // }
 
-  setPage(page.id, page.access_token);
+  // setPage(page.id, page.access_token);
 
-  console.log("checking page...", getPage());
+  // console.log("checking page...", getPage());
 
-  res.json({ scopes, accessToken: page });
+  res.json({ a: page.id, p: page.access_token });
 }
