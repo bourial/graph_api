@@ -32,11 +32,11 @@ export const getPagesBasedOnToken = async (userToken: string) => {
 
   const data: any = await response.json();
 
-  // if (response.ok) {
-  return data.data;
-  // }
+  if (response.ok) {
+    return data.data;
+  }
 
-  // throw new Error("Could not retrieve pages");
+  throw new Error("Could not retrieve pages");
 };
 
 export const createPagePost = async (
