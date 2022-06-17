@@ -1,7 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+  const [dataFromLogin, setDataFromLogin] = useState<any>();
+  const [post, setPost] = useState<string>();
+
   const login = () => {
     window.FB.login(
       response => {
@@ -11,7 +15,7 @@ const Home: NextPage = () => {
             `https://graph-api.vercel.app/api/hello?token=${response.authResponse.accessToken}`
           )
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => setDataFromLogin(data))
             .catch(error => {
               console.error("Error:", error);
             });
@@ -22,9 +26,11 @@ const Home: NextPage = () => {
   };
 
   const createPost = () => {
-    fetch(`https://graph-api.vercel.app/api/post`).then(response =>
-      response.json().then(data => console.log(data))
-    );
+    fetch(`https://graph-api.vercel.app/api/post`, {
+      method: "POST",
+      body: JSON.stringify({ dataFromLogin, post }),
+      headers: { "Content-Type": "application/json" },
+    }).then(response => response.json().then(data => alert(data.message)));
   };
 
   return (
@@ -35,18 +41,35 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center space-y-4 px-20 text-center">
-        <button
-          onClick={login}
-          className="bg-green-500 text-white font-semibold px-12 py-3 rounded-xl"
-        >
-          Login
-        </button>
-        <button
-          className="bg-blue-500 text-white font-semibold px-12 py-3 rounded-xl"
-          onClick={createPost}
-        >
-          Create New Post
-        </button>
+        {!dataFromLogin ? (
+          <button
+            onClick={login}
+            className="bg-green-500 text-white font-semibold px-12 py-3 rounded-xl"
+          >
+            Login
+          </button>
+        ) : (
+          <div className="font-semibold">
+            your logged in as {dataFromLogin.accessToken.name}{" "}
+            <span className="font-bold">Edit Page</span>
+          </div>
+        )}
+
+        {dataFromLogin && (
+          <>
+            <input
+              type="text"
+              value={post}
+              onChange={e => setPost(e.target.value)}
+            />
+            <button
+              className="bg-blue-500 text-white font-semibold px-12 py-3 rounded-xl"
+              onClick={createPost}
+            >
+              Create New Post
+            </button>
+          </>
+        )}
       </main>
     </div>
   );

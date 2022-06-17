@@ -6,9 +6,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const page = getPage();
+  // const page = getPage();
 
-  const pagePost = await createPagePost(page.pageId, page.pageToken, "test");
-
-  res.status(200).json({ message: "Great!" });
+  if (req.method !== "POST") {
+    const pagePost = await createPagePost(
+      req.body.accessToken.id,
+      req.body.accessToken.access_token,
+      req.body.post
+    );
+    res.status(200).json({ message: "Great! Your Post Created Successfuly" });
+  }
 }
