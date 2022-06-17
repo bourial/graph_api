@@ -5,6 +5,10 @@ export const setPage = (pageId: string, pageToken: string) => {
 };
 
 export const getPage = () => {
+  console.log("getting storage");
+
   const page = fs.readFileSync("page.json", "utf-8");
-  return JSON.parse(page);
+  console.log("page", page);
+
+  return JSON.parse(page) as { pageId: string; pageToken: string };
 };
