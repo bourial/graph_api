@@ -26,7 +26,7 @@ export default async function handler(req: any, res: NextApiResponse) {
 
   // setPage(page.id, page.access_token);
 
-  console.log("checking page...", getPage());
+  // console.log("checking page...", getPage());
 
   res.json({ scopes, accessToken: page });
 }
