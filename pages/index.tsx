@@ -11,7 +11,10 @@ const Home: NextPage = () => {
             `https://graph-api.vercel.app/api/hello?token=${response.authResponse.accessToken}`
           )
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => console.log(data))
+            .catch(error => {
+              console.error("Error:", error);
+            });
         }
       },
       { scope: "public_profile, pages_read_engagement, pages_manage_posts" }
