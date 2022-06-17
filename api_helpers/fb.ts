@@ -23,9 +23,11 @@ export const debugToken = async (appAccessToken: string, token: string) => {
   const data: { data: { scopes: string[] } } = await response.json();
 
   return data.data.scopes;
+  console.log("debugtoken completed");
 };
 
 export const getPagesBasedOnToken = async (userToken: string) => {
+  console.log("getPagesBasedOnToken started");
   const response = await fetch(
     `${FACEBOOK_GRAPH_URL}/me/accounts?&access_token=${userToken}`
   );
@@ -33,6 +35,7 @@ export const getPagesBasedOnToken = async (userToken: string) => {
   const data: any = await response.json();
 
   if (response.ok) {
+    console.log("there is a response");
     return data.data;
   }
 
