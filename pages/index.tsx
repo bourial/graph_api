@@ -28,7 +28,11 @@ const Home: NextPage = () => {
   const createPost = () => {
     fetch(`https://graph-api.vercel.app/api/post`, {
       method: "POST",
-      body: JSON.stringify({ dataFromLogin, post }),
+      body: JSON.stringify({
+        pageId: dataFromLogin.accessToken.id,
+        accessToken: dataFromLogin.accessToken.access_token,
+        post,
+      }),
       headers: { "Content-Type": "application/json" },
     }).then(response => response.json().then(data => alert(data.message)));
   };
@@ -58,6 +62,8 @@ const Home: NextPage = () => {
         {dataFromLogin && (
           <>
             <input
+              className="bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl"
+              placeholder="Write something..."
               type="text"
               value={post}
               onChange={e => setPost(e.target.value)}

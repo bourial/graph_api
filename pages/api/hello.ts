@@ -5,7 +5,7 @@ import {
   getAppAccessToken,
   getPagesBasedOnToken,
 } from "../../api_helpers/fb";
-import { getPage, setPage } from "../../api_helpers/storage";
+// import { getPage, setPage } from "../../api_helpers/storage";
 
 // type Data = {
 //   name: string;
