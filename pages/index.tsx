@@ -21,19 +21,19 @@ const Home: NextPage = () => {
             });
         }
       },
-      { scope: "public_profile, pages_read_engagement, pages_manage_posts" }
+      { scope: "public_profile,pages_read_engagement,pages_manage_posts" }
     );
   };
 
   const createPost = () => {
     fetch(`https://graph-api.vercel.app/api/post`, {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         pageId: dataFromLogin.accessToken.id,
         accessToken: dataFromLogin.accessToken.access_token,
         post,
       }),
-      headers: { "Content-Type": "application/json" },
     }).then(response => response.json().then(data => alert(data.message)));
   };
 
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
         {dataFromLogin && (
           <>
             <input
-              className="bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl"
+              className="bg-gray-100 text-gray-700 font-semibold py-3 rounded-xl pl-4 w-72"
               placeholder="Write something..."
               type="text"
               value={post}
