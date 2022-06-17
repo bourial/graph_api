@@ -1,7 +1,7 @@
 export const APP_ID = "598360455040144";
 const APP_SECRET = "9c3fe45849a58a3c90d77d2249b0c2fd";
 
-const FACEBOOK_GRAPH_URL = "https://graph.facebook.com/v3.2";
+const FACEBOOK_GRAPH_URL = "https://graph.facebook.com/v14.0";
 
 export const getAppAccessToken = async () => {
   const response = await fetch(
