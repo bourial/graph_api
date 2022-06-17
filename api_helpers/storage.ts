@@ -6,5 +6,5 @@ export const setPage = (pageId: string, pageToken: string) => {
 
 export const getPage = () => {
   const page = fs.readFileSync("page.json", "utf-8");
-  return JSON.parse(page) as { pageId: string; pageToken: string };
+  return JSON.parse(page);
 };
