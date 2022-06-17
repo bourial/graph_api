@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         version: "v14.0",
       });
     };
-    console.log("pass the first script tag with async");
   }, []);
 
   return (
