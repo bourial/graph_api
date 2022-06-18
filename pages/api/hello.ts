@@ -15,7 +15,7 @@ export default async function handler(req: any, res: NextApiResponse) {
 
   const scopes = await debugToken(appAccessToken, req.query.token);
 
-  const pages = await getPagesBasedOnToken(req.query.token);
+  const pages = await getPagesBasedOnToken(appAccessToken);
 
   const page = pages?.[0];
 
