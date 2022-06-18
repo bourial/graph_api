@@ -20,7 +20,8 @@ const Home: NextPage = () => {
           )
             .then(response => response.json())
             .then(data => {
-              console.log(data);
+              console.log("data bo7dha", data);
+              console.log("data mn page info", data.pageInfo);
               setPageInfo({ ...pageInfo, ...data.pageInfo });
             })
             .catch(error => {
