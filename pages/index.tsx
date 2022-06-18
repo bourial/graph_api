@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             .then(response => response.json())
             .then(data => {
               console.log(data);
-              setPageInfo({ ...pageInfo, ...data });
+              setPageInfo({ ...pageInfo, ...data.pageInfo });
             })
             .catch(error => {
               console.error("Error:", error);
