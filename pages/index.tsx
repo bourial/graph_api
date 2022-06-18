@@ -62,7 +62,7 @@ const Home: NextPage = () => {
         ) : (
           <div className="text-sm">
             your logged in as {pageInfo.name}{" "}
-            <span className="font-bold">Edit Page</span>
+            <button className="font-bold">Edit Page</button>
           </div>
         )}
 
