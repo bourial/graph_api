@@ -20,8 +20,6 @@ const Home: NextPage = () => {
           )
             .then(response => response.json())
             .then(data => {
-              console.log("data bo7dha", data);
-              console.log("data mn page info", data.pageInfo);
               setPageInfo({ ...pageInfo, ...data.pageInfo });
             })
             .catch(error => {
@@ -42,7 +40,9 @@ const Home: NextPage = () => {
         accessToken: pageInfo.access_token,
         post,
       }),
-    }).then(response => response.json().then(data => alert(data.message)));
+    })
+      .then(response => response.json())
+      .then(data => alert(data.message));
   };
 
   return (
@@ -78,7 +78,7 @@ const Home: NextPage = () => {
             />
             <button
               className="bg-blue-500 text-white font-semibold px-12 py-3 rounded-xl"
-              onClick={() => createPost}
+              onClick={createPost}
             >
               Create New Post
             </button>
