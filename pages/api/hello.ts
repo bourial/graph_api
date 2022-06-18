@@ -23,5 +23,5 @@ export default async function handler(req: any, res: NextApiResponse) {
     return res.status(500);
   }
 
-  res.json({ pageInfo: page.accessToken });
+  res.json({ pageInfo: page });
 }
