@@ -19,7 +19,10 @@ const Home: NextPage = () => {
             `https://graph-api.vercel.app/api/hello?token=${response.authResponse.accessToken}`
           )
             .then(response => response.json())
-            .then(data => setPageInfo({ ...pageInfo, ...data }))
+            .then(data => {
+              console.log(data);
+              setPageInfo({ ...pageInfo, ...data });
+            })
             .catch(error => {
               console.error("Error:", error);
             });
